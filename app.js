@@ -16,4 +16,8 @@ app.get('/fortunes/random', (req, res) => {
   res.json(random_fortune);
 });
 
+app.get('/fortunes/:id', (req, res) => {
+  res.json(fortunes.find(({ id }) => id == req.params.id));
+});
+
 module.exports = app;
