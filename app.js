@@ -12,7 +12,6 @@ app.get('/fortunes', (req, res) => {
 });
 
 app.get('/fortunes/random', (req, res) => {
-  console.log('requesting random fortunes');
 
   const random_index = Math.floor(Math.random() * fortunes.length);
   
@@ -25,7 +24,6 @@ app.get('/fortunes/:id', (req, res) => {
 });
 
 app.post('/fortunes', (req, res) => {
-  console.log(req.body)
 
   const { message, lucky_number, spirit_animal } = req.body;
 
