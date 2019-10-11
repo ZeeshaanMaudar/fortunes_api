@@ -38,6 +38,22 @@ app.post('/fortunes', (req, res) => {
   fs.writeFile('./data/fortunes.json', JSON.stringify(newFortunes), err => console.log(err));
 
   res.json(newFortunes);
-})
+});
+
+app.put('/fortunes/:id', (req, res) => {
+  const { id } = req.params;
+  const { message, lucky_number, spirit_animal } = req.body;
+
+  const oldFortune = fortunes.find(fortune => fortune.id == id);
+
+  if(message) oldFortune.message = message;
+  if(lucky_number) oldFortune.lucky_number = lucky_number;
+  if(spirit_animal) oldFortune.spirit_animal = spirit_animal;
+
+  fs.writeFile('./data/fortunes.json', JSON.stringify(fortunes), err => console.log(err));
+
+  res.json(fortunes);
+  
+});
 
 module.exports = app;
